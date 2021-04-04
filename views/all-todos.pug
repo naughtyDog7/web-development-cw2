@@ -1,0 +1,9 @@
+block content
+  main.all-todos     
+    if todos.length
+      ul.todos
+        each todo in todos
+          li.todo-item 
+            a(href=`todos/${ todo.id }`)= todo.value
+    else
+      p.empty No any todo yet
