@@ -4,13 +4,13 @@
   "description": "Todo Application For 'Web Technology' Module Course Work",
   "main": "app.js",
   "scripts": {
-    "start": "npx nodemon"
+    "start": "node app.js",
+    "devStart": "npx nodemon --ignore data/"
   },
+  "type": "module",
   "dependencies": {
-    "body-parser": "^1.19.0",
     "express": "^4.17.1",
-    "pug": "^3.0.2",
-    "start": "^5.1.0"
+    "pug": "^3.0.2"
   },
   "author": "",
   "license": "ISC"
