@@ -17,7 +17,7 @@ export class TodoRepository {
                 return
             }
             const todos = JSON.parse(json);
-            const maxId = Math.max.apply(Math, todos.map(t => t.id));
+            const maxId = Math.max.apply(Math, todos.map(t => t.id)) || 0;
             this.setTodoCounter(maxId)
         });
     }
@@ -62,7 +62,7 @@ export class TodoRepository {
                 onError(err)
                 return
             }
-            const todos = JSON.parse(json);
+            const todos = JSON.parse(json); 
             todo.id = this.generateId()
             todos.push(todo);
 
@@ -84,15 +84,17 @@ export class TodoRepository {
                 onError(err)
                 return
             }
-            const todos = JSON.parse(json);
-            todos = todos.filter(todo => todo.id !== id) || [];
-
-            writeFile(this.todosPath, JSON.stringify(todos), err => {
+            let todos = JSON.parse(json);
+            let filteredTodos = todos.filter(todo => {
+                console.log(`todo id ${todo.id}, id ${id}, ${todo.id === id}`)
+                return parseInt(todo.id) !== parseInt(id)
+            }) || [];
+            writeFile(this.todosPath, JSON.stringify(filteredTodos), err => {
                 if(err) {
                     printError(err);
                     onError(err);
                 } else {
-                    onSuccess(todo);
+                    onSuccess();
                 }
             })
         });
