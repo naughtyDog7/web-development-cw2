@@ -12,6 +12,9 @@
     "express": "^4.17.1",
     "pug": "^3.0.2"
   },
+  "engines": {
+    "node": "14.x"
+  },
   "author": "",
   "license": "ISC"
 }
