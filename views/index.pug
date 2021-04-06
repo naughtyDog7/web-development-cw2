@@ -1,7 +1,10 @@
 extends layout.pug 
 
 block content
-  main(class = "container w-25 m-3")   
+  main(class = "container w-25 m-3")
+    script.
+      alert("This web application was created to fulfill Web Technology module’s requirements and does not represent an actual company or service")   
     h1 Todo App
     form(action="/api/v1/todos/", method="get") 
         button(class="btn btn-success mt-3" type="submit") Todos
+
