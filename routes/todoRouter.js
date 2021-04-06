@@ -18,11 +18,27 @@ router.get("/", (req, res) => {
     renderAll(res)
 })
 
+router.get("/single/:id", (req, res) => {
+    repository.findById(req.params.id, (todo) => res.render("single-todo", {todo: todo}));
+});
+
+router.get("/:id/delete", (req, res) => {
+    repository.deleteById(req.params.id, 
+        () => res.redirect(303, "/todos"),
+        () => res.redirect(303, "/todos"))
+});
+
+router.get("/new-todo", (req, res) => {
+    return res.render("new-todo");
+});
+
 router.post("/", (req, res) => {
     if(validator.isValid(req.body)) {
         repository.save(req.body, 
             todo => res.redirect(303, "/todos"), 
             err=> res.redirect(303, "/todos"));
+    } else {
+        return res.render("new-todo", {error: true})
     }
 })
 

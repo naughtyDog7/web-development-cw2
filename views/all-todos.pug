@@ -1,9 +1,16 @@
+extends layout.pug
+
 block content
-  main.all-todos     
+  main(class = "container w-25 m-3")   
+    h1 Todos
     if todos.length
-      ul.todos
+      ul.list-group
         each todo in todos
-          li.todo-item 
-            a(href=`todos/${ todo.id }`)= todo.value
+          li.list-group-item
+            a(href=`todos/single/${ todo.id }`)=todo.title
+            form(action=`todos/${ todo.id }/delete`, method="get") 
+              button(class="btn btn-danger mt-3" type="submit") Delete
     else
       p.empty No any todo yet
+    form(action="/todos/new-todo", method="get") 
+      button(class="btn btn-success mt-3" type="submit") New Todo

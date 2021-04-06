@@ -1,5 +1,5 @@
 export class TodoValidator {
     isValid(todo) {
-        return todo.value.trim() !== ""; 
+        return todo.value.trim() !== "" && todo.title.trim() !== ""; 
     }
 }
