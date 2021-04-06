@@ -7,10 +7,10 @@ block content
       ul.list-group
         each todo in todos
           li.list-group-item
-            a(href=`todos/single/${ todo.id }`)=todo.title
-            form(action=`todos/${ todo.id }/delete`, method="get") 
+            a(href=`/api/v1/todos/single/${ todo.id }`)=todo.title
+            form(action=`/api/v1/todos/${ todo.id }/delete`, method="get") 
               button(class="btn btn-danger mt-3" type="submit") Delete
     else
       p.empty No any todo yet
-    form(action="/todos/new-todo", method="get") 
+    form(action="/api/v1/todos/new-todo", method="get") 
       button(class="btn btn-success mt-3" type="submit") New Todo

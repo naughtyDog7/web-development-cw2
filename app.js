@@ -11,6 +11,8 @@ app.use(express.urlencoded({
 app.set("view engine", "pug");
 app.use("/api/v1/todos", todosRouter);
 
+app.get("/", (req, res) => res.render("index"))
+
 app.listen(8080, () => {
     console.log(`App is listening on port  http://localhost:8080`);
 });

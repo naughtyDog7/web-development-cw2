@@ -1,0 +1,7 @@
+extends layout.pug 
+
+block content
+  main(class = "container w-25 m-3")   
+    h1 Todo App
+    form(action="/api/v1/todos/", method="get") 
+        button(class="btn btn-success mt-3" type="submit") Todos

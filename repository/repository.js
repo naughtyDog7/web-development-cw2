@@ -5,7 +5,6 @@ import {readFile, writeFile} from "fs"
 export class TodoRepository {
     constructor() {
         this.todosPath = join(root, 'data/todos.json')
-        this.todoCounter = 0;
         this.updateTodoCounter();
     }
 
@@ -17,13 +16,14 @@ export class TodoRepository {
                 return
             }
             const todos = JSON.parse(json);
-            const maxId = Math.max.apply(Math, todos.map(t => t.id)) || 0;
-            this.setTodoCounter(maxId)
+            if(todos.length === 0) {
+                this.todoCounter = 0;
+            } else {
+                const maxId = Math.max.apply(Math, todos.map(t => t.id));
+                this.todoCounter = maxId
+            }
+            console.log(`Max id ${this.todoCounter}`)
         });
-    }
-
-    setTodoCounter(counter) {
-        this.todoCounter = counter;
     }
 
     printError(err) {
@@ -85,10 +85,7 @@ export class TodoRepository {
                 return
             }
             let todos = JSON.parse(json);
-            let filteredTodos = todos.filter(todo => {
-                console.log(`todo id ${todo.id}, id ${id}, ${todo.id === id}`)
-                return parseInt(todo.id) !== parseInt(id)
-            }) || [];
+            let filteredTodos = todos.filter(todo => parseInt(todo.id) !== parseInt(id)) || [];
             writeFile(this.todosPath, JSON.stringify(filteredTodos), err => {
                 if(err) {
                     printError(err);

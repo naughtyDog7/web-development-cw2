@@ -4,5 +4,5 @@ block content
   main(class="container w-25 m-3")
     h2= todo.title
     p= todo.value 
-    form(action="/todos", method="get") 
+    form(action="/api/v1/todos", method="get") 
       button(class="btn btn-primary mt-1" type="submit") Back

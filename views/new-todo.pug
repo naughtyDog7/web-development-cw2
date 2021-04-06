@@ -7,7 +7,7 @@ block content
     if error
       div(class="alert alert-danger") Please, add some text before submitting 
 
-    form(action="/todos" method="POST")
+    form(action="/api/v1/todos" method="POST")
       div.form-group
         label Title
         input(name="title" class="form-control")

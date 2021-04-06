@@ -24,8 +24,8 @@ router.get("/single/:id", (req, res) => {
 
 router.get("/:id/delete", (req, res) => {
     repository.deleteById(req.params.id, 
-        () => res.redirect(303, "/todos"),
-        () => res.redirect(303, "/todos"))
+        () => res.redirect(303, "/api/v1/todos"),
+        () => res.redirect(303, "/api/v1/todos"))
 });
 
 router.get("/new-todo", (req, res) => {
@@ -35,8 +35,8 @@ router.get("/new-todo", (req, res) => {
 router.post("/", (req, res) => {
     if(validator.isValid(req.body)) {
         repository.save(req.body, 
-            todo => res.redirect(303, "/todos"), 
-            err=> res.redirect(303, "/todos"));
+            todo => res.redirect(303, "/api/v1/todos"), 
+            err=> res.redirect(303, "/api/v1/todos"));
     } else {
         return res.render("new-todo", {error: true})
     }
